@@ -13,8 +13,22 @@
 * 再来进行语意处理(Semantics Analysis)产生语意树
 * 最佳化并产生Code Generation(IR档 → ASM档 → OBJ档)
 
+#### Compiler编译器所需要的阶段
+Syntax 语法上的处理 分两个lexer、parser（最核心的关键）  这是语法的部分
+semantic 语义的部分 形态检测  不同语言不一样 eg：c语言需要比较严格的检测 而javaScript不需要
+Code Generation 程式码生成   IR中间码   ASM组合语言  OBJ目的档
+
+
+
+
 ## Paser理论基础
 Grammar 语法
+Grammar语法  在自然语言中没有非常严格的规定 
+
+举例S表示一个句子 一个句子由名词短语NP和动词短语VP组成
+
+而名词短语由形容词adj和名词n组成 动词短语由动词v和名词n组成
+
 * 深层语法 Noam Chomsky  
 没有办法严格规定 所以需要深度学习来做机器翻译
 * BNF(Backus Normal Form)  
@@ -109,4 +123,65 @@ int main(int argc, char * argv[]) {
   parse(argv[1]);
 }
 
+```
+
+#### 执行历史
+
+```
+PS F:\1文件\演算法\xtcs\sp\03-compiler\02-lexer> gcc lexer.c -o lexer
+PS F:\1文件\演算法\xtcs\sp\03-compiler\02-lexer> ./lexer sum.c
+#include "sum.h"
+
+int main() {
+  int t = sum(10);
+  printf("sum(10)=%d\n", t);
+}
+token=#      
+token=include
+token="sum.h"
+token=int    
+token=main   
+token=(      
+token=)      
+token={      
+token=int    
+token=t
+token==
+token=sum
+token=(
+token=10
+token=)
+token=;
+token=printf
+token=(
+token="sum(10)=%d\n"
+token=,
+token=t
+token=)
+token=;
+token=}
+0:#
+1:include
+2:"sum.h"
+3:int
+4:main
+5:(
+6:)
+7:{
+8:int
+9:t
+10:=
+11:sum
+12:(
+13:10
+14:)
+15:;
+16:printf
+17:(
+18:"sum(10)=%d\n"
+19:,
+20:t
+21:)
+22:;
+23:}
 ```
