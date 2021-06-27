@@ -1,6 +1,6 @@
 # 第六周
 
-##编译流程
+## 编译流程
 
 ![image](https://github.com/lzc2021/sp109b/blob/main/image/01.png)
 
