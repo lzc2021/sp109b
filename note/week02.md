@@ -128,60 +128,38 @@ int main(int argc, char * argv[]) {
 #### 执行历史
 
 ```
-PS F:\1文件\演算法\xtcs\sp\03-compiler\02-lexer> gcc lexer.c -o lexer
-PS F:\1文件\演算法\xtcs\sp\03-compiler\02-lexer> ./lexer sum.c
-#include "sum.h"
-
-int main() {
-  int t = sum(10);
-  printf("sum(10)=%d\n", t);
-}
-token=#      
-token=include
-token="sum.h"
-token=int    
-token=main   
-token=(      
-token=)      
-token={      
-token=int    
-token=t
-token==
-token=sum
-token=(
-token=10
-token=)
-token=;
-token=printf
-token=(
-token="sum(10)=%d\n"
-token=,
-token=t
-token=)
-token=;
-token=}
-0:#
-1:include
-2:"sum.h"
-3:int
-4:main
-5:(
-6:)
-7:{
-8:int
-9:t
-10:=
-11:sum
-12:(
-13:10
-14:)
-15:;
-16:printf
-17:(
-18:"sum(10)=%d\n"
-19:,
-20:t
-21:)
-22:;
-23:}
+PS F:\1文件\演算法\xtcs\sp\03-compiler\00-gen> gcc genExp.c rlib.c -o genExp
+PS F:\1文件\演算法\xtcs\sp\03-compiler\00-gen> ./genExp
+4/8
+2
+(1)/2
+0*(5/0)-((4*6)*9)/((9/9)*6)
+5*9
+7*1
+7*2+4*1
+7
+PS F:\1文件\演算法\xtcs\sp\03-compiler\00-gen> gcc genEnglish.c rlib.c -o genEnglish
+PS F:\1文件\演算法\xtcs\sp\03-compiler\00-gen> ./genEnglish
+the cat chase the dog
+PS F:\1文件\演算法\xtcs\sp\03-compiler\01-exp0> gcc exp0.c -o exp0
+PS F:\1文件\演算法\xtcs\sp\03-compiler\01-exp0> ./exp0 '3+5'
+argv[0]=F:\1文件\演算法\xtcs\sp\03-compiler\01-exp0\exp0.exe argv[1]=3+5
+=== EBNF Grammar =====
+E=F ([+-] F)*
+F=Number | '(' E ')'
+==== parse:3+5 ========
+t0=3
+t1=5
+t2=t0+t1
+PS F:\1文件\演算法\xtcs\sp\03-compiler\01-exp0> ./exp0 '3+(5-4)'
+argv[0]=F:\1文件\演算法\xtcs\sp\03-compiler\01-exp0\exp0.exe argv[1]=3+(5-4)
+=== EBNF Grammar =====
+E=F ([+-] F)*
+F=Number | '(' E ')'
+==== parse:3+(5-4) ========
+t0=3
+t1=5
+t2=4
+t3=t1-t2
+t4=t0+t3
 ```
